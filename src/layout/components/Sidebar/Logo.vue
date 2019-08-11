@@ -14,6 +14,9 @@
 </template>
 
 <script>
+
+import headerPNG from '@/assets/header.png'
+
 export default {
   name: 'SidebarLogo',
   props: {
@@ -24,8 +27,8 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Admin Template',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      title: '公寓管理系统',
+      logo: headerPNG
     }
   }
 }
