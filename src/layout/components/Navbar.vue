@@ -37,9 +37,13 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
 export default {
+  name: 'Navbar',
   components: {
     Breadcrumb,
     Hamburger
+  },
+  data() {
+    return {}
   },
   computed: {
     ...mapGetters([

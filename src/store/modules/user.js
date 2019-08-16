@@ -1,10 +1,11 @@
 import { login, logout, getInfo } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { setToken, getToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 import avatarAdmin from '@/assets/tou.gif'
 
 const state = {
   token: getToken(),
+  isLoading: false,
   name: '',
   avatar: ''
 }
@@ -15,6 +16,9 @@ const mutations = {
   },
   SET_NAME: (state, name) => {
     state.name = name
+  },
+  SET_ISLoading: (state, isLoading) => {
+    state.isLoading = isLoading
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
@@ -27,9 +31,9 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        const token = response.data
+        setToken(token)
+        commit('SET_TOKEN', token)
         resolve()
       }).catch(error => {
         reject(error)
@@ -42,14 +46,12 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const { data } = response
-
         if (!data) {
-          reject('Verification failed, please Login again.')
+          reject('未授权,请重新登录.')
         }
+        const { username } = data
 
-        const { name } = data
-
-        commit('SET_NAME', name)
+        commit('SET_NAME', username)
         commit('SET_AVATAR', avatarAdmin)
         resolve(data)
       }).catch(error => {

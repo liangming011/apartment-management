@@ -18,6 +18,7 @@ router.beforeEach(async(to, from, next) => {
   document.title = getPageTitle(to.meta.title)
 
   // determine whether the user has logged in
+  await getToken() !== 'undefined' && getToken() !== null
   const hasToken = getToken()
 
   if (hasToken) {
@@ -27,6 +28,7 @@ router.beforeEach(async(to, from, next) => {
       NProgress.done()
     } else {
       const hasGetUserInfo = store.getters.name
+      await hasGetUserInfo !== ''
       if (hasGetUserInfo) {
         next()
       } else {
@@ -46,7 +48,6 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     /* has no token*/
-
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next()
