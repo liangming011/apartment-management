@@ -56,6 +56,54 @@ export const constantRoutes = [
   },
 
   {
+    path: '/doorlock',
+    component: Layout,
+    redirect: '/doorlock',
+    children: [{
+      path: 'doorlock',
+      name: '门锁管理',
+      component: () => import('@/views/doorlock/index'),
+      meta: { title: '门锁管理', icon: 'lock' }
+    }]
+  },
+
+  {
+    path: '/apartment',
+    component: Layout,
+    redirect: '/apartment',
+    children: [{
+      path: 'apartment',
+      name: '公寓管理',
+      component: () => import('@/views/apartment/index'),
+      meta: { title: '公寓管理', icon: 'home' }
+    }]
+  },
+
+  {
+    path: '/leaseholder',
+    component: Layout,
+    redirect: '/leaseholder',
+    children: [{
+      path: 'leaseholder',
+      name: '租户管理',
+      component: () => import('@/views/leaseholder/index'),
+      meta: { title: '租户管理', icon: 'peoples' }
+    }]
+  },
+
+  {
+    path: '/reportrepair',
+    component: Layout,
+    redirect: '/reportrepair',
+    children: [{
+      path: 'reportrepair',
+      name: '报修管理',
+      component: () => import('@/views/reportrepair/index'),
+      meta: { title: '报修管理', icon: 'form' }
+    }]
+  },
+
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
