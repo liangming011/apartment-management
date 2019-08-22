@@ -386,21 +386,18 @@ export default {
     getPatternList() {
       patternList().then(response => {
         this.patternList = response.data
-        this.patternAllList = response.data
       })
     },
     // 获取户型所有类型
     getHouseTypeList() {
       houseTypeList().then(response => {
         this.houseTypeList = response.data
-        this.houseTypeAllList = response.data
       })
     },
     // 获取朝向所有类型
     getFaceList() {
       faceList().then(response => {
         this.faceList = response.data
-        this.faceAllList = response.data
       })
     },
     // 过滤公寓状态类型
@@ -502,30 +499,37 @@ export default {
     },
     // 删除公寓信息
     deleteDate(row) {
-      deleteApartment(row.id).then((response) => {
-        const result = response.data
-        if (result) {
-          for (const v of this.list) {
-            if (v.id === row.id) {
-              const index = this.list.indexOf(row)
-              this.list.splice(index, 1)
-              break
+      this.$confirm('此操作将永久删除该公寓信息, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteApartment(row.id).then((response) => {
+          const result = response.data
+          if (result) {
+            for (const v of this.list) {
+              if (v.id === row.id) {
+                const index = this.list.indexOf(row)
+                this.list.splice(index, 1)
+                break
+              }
             }
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            })
+          } else {
+            this.$message({
+              type: 'info',
+              message: '删除失败!'
+            })
           }
-          this.$notify({
-            title: '成功',
-            message: '删除成功',
-            type: 'success',
-            duration: 2000
-          })
-        } else {
-          this.$notify({
-            title: '失败',
-            message: '删除失败',
-            type: 'error',
-            duration: 2000
-          })
-        }
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
       })
     },
     // handleDownload() {

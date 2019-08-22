@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function fetchList(params) {
   return request({
-    url: '/apartmentList',
+    url: '/apartment/apartmentList',
     method: 'post',
     data: params,
     headers: {
@@ -13,44 +13,28 @@ export function fetchList(params) {
 
 export function patternList() {
   return request({
-    url: '/selectPattern',
+    url: '/apartment/selectPattern',
     method: 'get'
   })
 }
 
 export function faceList() {
   return request({
-    url: '/selectFaceList',
+    url: '/apartment/selectFaceList',
     method: 'get'
   })
 }
 
 export function houseTypeList() {
   return request({
-    url: '/selectHouseType',
+    url: '/apartment/selectHouseType',
     method: 'get'
-  })
-}
-
-export function fetchArticle(id) {
-  return request({
-    url: '/article/detail',
-    method: 'get',
-    params: { id }
-  })
-}
-
-export function fetchPv(pv) {
-  return request({
-    url: '/article/pv',
-    method: 'get',
-    params: { pv }
   })
 }
 
 export function createApartment(params) {
   return request({
-    url: '/createApartment',
+    url: '/apartment/createApartment',
     method: 'post',
     data: params,
     headers: {
@@ -61,7 +45,7 @@ export function createApartment(params) {
 
 export function updateApartment(params) {
   return request({
-    url: '/updateApartment',
+    url: '/apartment/updateApartment',
     method: 'post',
     data: params,
     headers: {
@@ -72,7 +56,29 @@ export function updateApartment(params) {
 
 export function deleteApartment(id) {
   return request({
-    url: '/deleteApartment',
+    url: '/apartment/deleteApartment',
+    method: 'post',
+    data: id,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+export function apartmentListByUserid(id) {
+  return request({
+    url: '/apartment/getApartmentListByUserid',
+    method: 'post',
+    data: id,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+export function apartmentById(id) {
+  return request({
+    url: '/apartment/getApartmentById',
     method: 'post',
     data: id,
     headers: {

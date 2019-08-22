@@ -17,6 +17,24 @@ import * as filters from './filters' // global filters
 import '@/icons' // icon
 import '@/permission' // permission control
 
+// 图片查看抄件
+import 'viewerjs/dist/viewer.css'
+import Viewer from 'v-viewer'
+Vue.use(Viewer, {
+  defaultOptions: {
+    zIndex: 9999
+  }
+})
+// 视频播放插件
+import VueVideoPlayer from 'vue-video-player'
+// require videojs style
+import 'video.js/dist/video-js.css'
+// import 'vue-video-player/src/custom-theme.css'
+Vue.use(VueVideoPlayer, /* {
+  options: global default options,
+  events: global videojs events
+} */)
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

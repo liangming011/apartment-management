@@ -104,22 +104,37 @@ export const constantRoutes = [
   },
 
   {
+    path: '/check',
+    component: Layout,
+    redirect: '/check',
+    children: [{
+      path: 'check',
+      name: '视频查看',
+      component: () => import('@/views/components-demo/videoplayer'),
+      meta: { title: '视频查看', icon: 'form' }
+    }]
+  },
+
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
     name: '示例',
     meta: { title: '示例', icon: 'example' },
+    hidden: true,
     children: [
       {
         path: 'table',
         name: '表格',
         component: () => import('@/views/table/index'),
+        hidden: true,
         meta: { title: '表格', icon: 'table' }
       },
       {
         path: 'tree',
         name: '树',
         component: () => import('@/views/tree/index'),
+        hidden: true,
         meta: { title: '树', icon: 'tree' }
       }
     ]
@@ -133,6 +148,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Form表单',
         component: () => import('@/views/form/index'),
+        hidden: true,
         meta: { title: 'Form表单', icon: 'form' }
       }
     ]
@@ -143,6 +159,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/nested/menu1',
     name: '菜单示例',
+    hidden: true,
     meta: {
       title: '菜单示例',
       icon: 'nested'
@@ -153,11 +170,13 @@ export const constantRoutes = [
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
         meta: { title: 'Menu1' },
+        hidden: true,
         children: [
           {
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
             name: 'Menu1-1',
+            hidden: true,
             meta: { title: 'Menu1-1' }
           },
           {
@@ -165,17 +184,20 @@ export const constantRoutes = [
             component: () => import('@/views/nested/menu1/menu1-2'),
             name: 'Menu1-2',
             meta: { title: 'Menu1-2' },
+            hidden: true,
             children: [
               {
                 path: 'menu1-2-1',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
+                hidden: true,
                 meta: { title: 'Menu1-2-1' }
               },
               {
                 path: 'menu1-2-2',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
                 name: 'Menu1-2-2',
+                hidden: true,
                 meta: { title: 'Menu1-2-2' }
               }
             ]
@@ -184,6 +206,7 @@ export const constantRoutes = [
             path: 'menu1-3',
             component: () => import('@/views/nested/menu1/menu1-3'),
             name: 'Menu1-3',
+            hidden: true,
             meta: { title: 'Menu1-3' }
           }
         ]
@@ -191,6 +214,7 @@ export const constantRoutes = [
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
+        hidden: true,
         meta: { title: 'menu2' }
       }
     ]

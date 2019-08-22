@@ -22,7 +22,7 @@ export function userInfoById(id) {
   })
 }
 
-export function userList(params) {
+export function getUserList(params) {
   return request({
     url: '/user/userList',
     method: 'post',
@@ -33,3 +33,42 @@ export function userList(params) {
   })
 }
 
+export function idTypeList() {
+  return request({
+    url: '/user/selectIdTypeList',
+    method: 'get'
+  })
+}
+
+export function deleteUserById(id) {
+  return request({
+    url: '/user/deleteUserById',
+    method: 'post',
+    data: id,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+export function updateUserById(params) {
+  return request({
+    url: '/user/updateUserById',
+    method: 'post',
+    data: params,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+export function createUser(params) {
+  return request({
+    url: '/user/createUser',
+    method: 'post',
+    data: params,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
